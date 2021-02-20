@@ -22,6 +22,8 @@ type Repository interface {
 	GetBoardArticle(ctx context.Context, boardID, filename string) ([]byte, error)
 	// GetBoardArticleRecords returns article records of a board
 	GetBoardArticleRecords(ctx context.Context, boardID string) ([]bbs.ArticleRecord, error)
+	// GetPopularArticleRecords returns current popular article records
+	GetPopularArticleRecords(ctx context.Context) ([]BBSPopularArticleRecord, error)
 	// GetBoardTreasureRecords returns treasure article records of a board
 	GetBoardTreasureRecords(ctx context.Context, boardID string, treasureIDs []string) ([]bbs.ArticleRecord, error)
 

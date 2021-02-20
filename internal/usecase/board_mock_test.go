@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/PichuChen/go-bbs"
+	"github.com/Ptt-official-app/Ptt-backend/internal/repository"
 )
 
 func (repo *MockRepository) GetBoards(ctx context.Context) []bbs.BoardRecord {
@@ -40,6 +41,10 @@ func (repo *MockRepository) GetBoardArticleRecords(ctx context.Context, boardID 
 		result[i] = v
 	}
 	return result, nil
+}
+func (repo *MockRepository) GetPopularArticleRecords(ctx context.Context) ([]repository.BBSPopularArticleRecord, error) {
+	// TODO
+	return make([]repository.BBSPopularArticleRecord, 0), nil
 }
 func (repo *MockRepository) GetBoardTreasureRecords(ctx context.Context, boardID string, treasureIDs []string) ([]bbs.ArticleRecord, error) {
 	return []bbs.ArticleRecord{}, nil

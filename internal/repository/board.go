@@ -19,6 +19,38 @@ func (repo *repository) GetBoardArticleRecords(_ context.Context, boardID string
 	return repo.db.ReadBoardArticleRecordsFile(boardID)
 }
 
+func (repo *repository) GetPopularArticleRecords(_ context.Context) ([]BBSPopularArticleRecord, error) {
+	// Note: go-bbs has not implemented this yet
+	// TODO: delegate to repo.db when it is ready
+	return make([]BBSPopularArticleRecord, 0), nil
+}
+
+// // BBSPopularArticleRecord : Mock of bbs.PopularArticleRecord
+// type BBSPopularArticleRecord interface {
+// 	// Note: go-bbs has not implemented this yet
+// 	// TODO: use bbs.PopularArticleRecord or something when it is ready
+// 	bbs.ArticleRecord
+// 	BoardId() string
+// }
+
+//BBSPopularArticleRecord : Mock of bbs.PopularArticleRecord
+type BBSPopularArticleRecord interface {
+	// Note: go-bbs has not implemented this yet
+	// TODO: use bbs.PopularArticleRecord or something when it is ready
+	bbs.ArticleRecord
+}
+
+type bbsPopularArticleRecord struct {
+	// Note: go-bbs has not implemented this yet
+	// TODO: use bbs.PopularArticleRecord or something when it is ready
+	bbs.ArticleRecord
+}
+
+// BoardId returns the board id of the popular article
+func (record *bbsPopularArticleRecord) BoardId() string {
+	return ""
+}
+
 func (repo *repository) GetBoardTreasureRecords(_ context.Context, boardID string, treasureIDs []string) ([]bbs.ArticleRecord, error) {
 	return repo.db.ReadBoardTreasureRecordsFile(boardID, treasureIDs)
 }
