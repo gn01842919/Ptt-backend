@@ -23,6 +23,11 @@ func (repo *repository) GetBoardTreasureRecords(_ context.Context, boardID strin
 	return repo.db.ReadBoardTreasureRecordsFile(boardID, treasureIDs)
 }
 
+func (repo *repository) GetBoardInformation(ctx context.Context, boardId string) ([]BBSBoardInformation, error) {
+	return 
+}
+
+
 func loadBoardFile(db *bbs.DB) ([]bbs.BoardRecord, error) {
 	boardRecords, err := db.ReadBoardRecords()
 	if err != nil {
@@ -33,4 +38,16 @@ func loadBoardFile(db *bbs.DB) ([]bbs.BoardRecord, error) {
 		logger.Debugf("loaded %d %v", index, board.BoardId())
 	}
 	return boardRecords, nil
+}
+
+// go-bbs not yet implement this, so mock it here
+type BBSBoardInformation interface {
+	Type() string
+	Title() string
+	NumberOfUsers() int
+	Moderators() []string
+	PostLimition() map[string]int
+}
+
+type bbsBoardInformation struct {
 }
